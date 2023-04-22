@@ -12,7 +12,9 @@ const {dbConnection} = require("./db/connection")
  
 //middlewares
 
-
+const corsOptions = {
+    origin: 'https://exercise-tracker-frontend-e4pd.onrender.com'
+  };
 app.use(cors());
 app.use(express.json())
 app.use(morgan("dev"))
