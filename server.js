@@ -12,10 +12,8 @@ const {dbConnection} = require("./db/connection")
  
 //middlewares
 
-const corsOptions = {
-    origin: 'http://localhost:5173'
-  };
-app.use(cors(corsOptions));
+
+app.use(cors());
 app.use(express.json())
 app.use(morgan("dev"))
 app.use(express.static(path.join(__dirname,"public")))
