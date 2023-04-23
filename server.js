@@ -13,7 +13,7 @@ const {dbConnection} = require("./db/connection")
 //middlewares
 
 const corsOptions = {
-    origin: 'https://exercise-tracker-frontend-e4pd.onrender.com'
+    origin: ['https://exercise-tracker-frontend-e4pd.onrender.com',"http://localhost:5173"]
   };
 app.use(cors());
 app.use(express.json())
