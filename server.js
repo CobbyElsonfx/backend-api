@@ -5,8 +5,12 @@ const express = require("express")
 const  app = express()
 var path = require("path")
 const morgan = require("morgan")
+
+//custom imports
 const workoutsRouter = require("./routes/workout")
+const loginRouter = require("./routes/user")
 const {dbConnection} = require("./db/connection")
+
 
 
  
@@ -21,6 +25,7 @@ app.use(morgan("dev"))
 app.use(express.static(path.join(__dirname,"public")))
 
 app.use("/api/workouts", workoutsRouter)
+app.use("/api/user",loginRouter)
 
 
 
