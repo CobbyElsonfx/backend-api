@@ -26,8 +26,8 @@ app.use(morgan("dev"))
 app.use(express.static(path.join(__dirname,"public")))
 
 
-app.use("https://backend-exercise-tracker-wtnx.onrender.com/api/workouts", workoutsRouter)
-app.use("https://backend-exercise-tracker-wtnx.onrender.com/api/user",authRouter)
+app.use("/api/workouts", workoutsRouter)
+app.use("/api/user",authRouter)
 
 
 
