@@ -43,8 +43,6 @@ userSchema.statics.login = async function(email, password){
     }else{
         throw Error("email not registered")
     }
-
-    console.log(user, "after" )
 }
 
 module.exports = mongoose.model("user", userSchema)

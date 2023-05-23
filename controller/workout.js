@@ -9,8 +9,9 @@ const mongoose = require("mongoose")
 
 //GET ALL WORKOUTS
 const getAll_workout = async (req,res)=>{
+      const userId = req.user._id
     try {
-        const workout = await Workoutmodel.find({}).sort({createdAt:-1})
+        const workout = await Workoutmodel.find({userId}).sort({createdAt:-1})
         res.status(200).json(workout)
         
     } catch (error) {
@@ -21,9 +22,11 @@ const getAll_workout = async (req,res)=>{
 
 //POST A SINGLE WORKOUT
 const post_workout = async (req,res)=>{
+    const userId = req.user._id
+    console.log("here is the user id",req.user)
     const {title,reps,load} = req.body
     try {
-        const workout = await Workoutmodel.create({title,reps,load})
+        const workout = await Workoutmodel.create({title,reps,load,userId})
         res.status(200).json(workout)  
         
     } catch (error) {
@@ -84,7 +87,7 @@ const deleteSingle_workout = async (req,res)=>{
 
 
 
-//UPDATE A SINGLE WORKOUT
+//UPDATE A SINGLE WORKOUT  (this endpoint will be used in the future to enable users to edit their workouts)
 const update_workout =  async (req,res)=>{
     const {id} = req.params
     try {

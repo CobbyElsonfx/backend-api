@@ -3,8 +3,12 @@ const express = require("express")
 const router = express.Router()
 const Workoutmodel = require("../model/workout") // models name by convention must be PascalCase called they are generally considered to be classes
 const {getAll_workout,post_workout,getSingle_workout, deleteSingle_workout,update_workout} = require("../controller/workout")
+const requireAuth  = require("../middleware/requireAuth")
 
-router.route("/" )
+router.use(requireAuth)
+
+
+router.route("/" )   
 .get(getAll_workout)
 .post(post_workout)
 

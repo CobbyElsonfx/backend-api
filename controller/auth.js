@@ -32,7 +32,7 @@ const handleError = (err)=>{
 }
 
 const createToken =(id)=>{  
-    return jwt.sign({id}, "0558119187A" , 
+    return jwt.sign({id}, process.env.SECRET , 
                     {expiresIn: "3d"})
 }
 
@@ -41,18 +41,19 @@ const createToken =(id)=>{
 
 
 const loginController = async (req,res)=>{
-    const {email,password } = req.body
+    const {email,password ,username} = req.body
     try {
-        const newUser = await userModel.login(email,password)
-        if(newUser){
-            const token = await createToken(newUser_id)
+        const user = await userModel.login(email,password)
+        if(user){
+            const token = await createToken(user._id)
+            const {_id} = jwt.verify(token,process.env.SECRET)
+            console.log("Before storing to local storage in the aut.js login controlelr", user._id,"and the ID", _id )
             res.cookie ("jwt", token, {maxAge:2*24*60*60*1000,httpOnly:true} )
-            console.log(user)
-            res.status(200).json({user:newUserr})
+            res.status(200).json({token,email,username})
         }
              
     } catch (error) {  
-        console.error(error) 
+        console.error(error)  
         const errors = handleError(error)
         res.status(400).json({errors})
     }

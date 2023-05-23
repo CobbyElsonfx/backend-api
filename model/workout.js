@@ -12,7 +12,11 @@ const workoutSchema  = new mongoose.Schema({
     load:{
         type:Number,
         required:true
+    },
+    userId :{
+        type:String,
     }
+
 },
 {timestamps:true})
 
